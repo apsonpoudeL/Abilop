@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+   
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.stopwatch {
+  font-size: 24px;
+}
+
+.button {
+  margin-top: 10px;
+}
+</style>
+<script>
+var startTime = 0;
+var running = 0;
+
+function startPause() {
+  if (running === 0) {
+    running = 1;
+    startTime = new Date().getTime() - startTime;
+    document.getElementById("startPause").innerHTML = "Pause";
+    update();
+  } else {
+    running = 0;
+    document.getElementById("startPause").innerHTML = "Resume";
+  }
+}
+
+function reset() {
+  running = 0;
+  document.getElementById("startPause").innerHTML = "Start";
+  document.getElementById("output").innerHTML = "00:00:00";
+  startTime = 0;
+}
+
+function update() {
+  if (running === 1) {
+    var currentTime = new Date().getTime() - startTime;
+    var hours = Math.floor(currentTime / 3600000);
+    var minutes = Math.floor((currentTime % 3600000) / 60000);
+    var seconds = Math.floor((currentTime % 60000) / 1000);
+    document.getElementById("output").innerHTML =
+      (hours < 10 ? "0" : "") + hours + ":" +
+      (minutes < 10 ? "0" : "") + minutes + ":" +
+      (seconds < 10 ? "0" : "") + seconds;
+    setTimeout(update, 1000);
+  }
+}
+
+</script>
+</head>
+<body>
+    <P><h1>Atleast stydy one hour</h1></p>
+
+<div class="center">
+  <p class="stopwatch" id="output">00:00:00</p>
+  <button class="button" id="startPause" onclick="startPause()">Start</button>
+  <button class="button" onclick="reset()">Reset</button>
+</div>
+
+</body>
+</html>

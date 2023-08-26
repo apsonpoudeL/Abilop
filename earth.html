@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .heart {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: heartbeat 1.5s infinite;
+  }
+  
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: red;
+  }
+  
+  .heart::before {
+    left: 50px;
+    transform: translateX(-50%);
+  }
+  
+  .heart::after {
+    left: 0;
+  }
+</style>
+<title>Heartbeat Animation</title>
+</head>
+<body>
+  <div class="heart"></div>
+</body>
+</html>
+
